@@ -5,17 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XIANG_QI_TRANSFER.Displayers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="498.615" Width="871.467"
+        Title="MainWindow" Height="745.815" Width="886.467"
         ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="界面 (2).png"/>
+    </Window.Background>
 
-    <Grid x:Name="grid" Margin="10,10,0,0" Height="440" VerticalAlignment="Top" MinWidth="720" MinHeight="440" HorizontalAlignment="Left" Width="720">
+    <Grid x:Name="grid" Margin="18,0,0,9" Height="699" VerticalAlignment="Bottom" MinWidth="600" MinHeight="440" HorizontalAlignment="Left" Width="682">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -33,15 +36,15 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="8" HorizontalAlignment="Left" Height="126" Margin="90,0,-125,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="115">
+        <Grid Grid.Column="8" HorizontalAlignment="Left" Height="140" Margin="90,0,-135,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="115">
             <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,27" TextWrapping="Wrap" Width="95"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
-            <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="40"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
         </Grid>
         <Grid Grid.Column="8" HorizontalAlignment="Left" Height="93" Margin="90,15,-125,0" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Top" Width="115">
             <Button Content="Start" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-            <Button Content="Undo" HorizontalAlignment="Left" Margin="19,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+            <Button Content="Undo" HorizontalAlignment="Left" Margin="19,32,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
             <Button Content="Restart" HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
         </Grid>
-        <Image Grid.Column="8" HorizontalAlignment="Left" Height="100" Margin="97,18,-117,0" Grid.Row="6" Grid.RowSpan="3" VerticalAlignment="Top" Width="100" MouseDown="Image_MouseDown" Source="enemy1.png"/>
+        <Image Grid.Column="8" HorizontalAlignment="Left" Height="100" Margin="97,18,-117,0" Grid.Row="6" Grid.RowSpan="3" VerticalAlignment="Top" Width="100" MouseDown="Image_MouseDown" Source="3d24849806cc74faa3957cab8b45d31.png"/>
     </Grid>
 </Window>

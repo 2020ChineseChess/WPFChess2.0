@@ -108,5 +108,11 @@
   <ItemGroup>
     <Resource Include="Displayers\enemy1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\3d24849806cc74faa3957cab8b45d31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\界面 %282%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

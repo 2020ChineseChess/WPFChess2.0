@@ -37,10 +37,6 @@ namespace XIANG_QI_TRANSFER.Displayers
             InitializeComponent();
             createGrid(grid);
         }
-
-
-
- 
         public void createGrid(Grid grid)
         {
             for (int row = 0; row < 11; row++)
@@ -48,14 +44,18 @@ namespace XIANG_QI_TRANSFER.Displayers
                 for (int col = 0; col < 9; col++)
                 {
                     Button btn = new Button();
-                    btn.Height = 40;
-                    btn.Width = 80;
+                    btn.Height = 72;
+                    btn.Width =  72;
 
                     if (gb.Board[row, col] != null)
                     {
                         btn.Content = gb.Board[row, col].Name;
                         if (gb.Board[row, col].Player != Pieces.Piece.Team.black)
                             btn.Foreground = Brushes.Red;
+                    }
+                    else
+                    {
+                        btn.Visibility = Visibility.Visible;
                     }
 
 
@@ -67,7 +67,8 @@ namespace XIANG_QI_TRANSFER.Displayers
                     }
                     else
                     {
-                        btn.Background = Brushes.LightSeaGreen;
+                        btn.Height = 0;
+                        btn.Width = 0;
                     }
 
                     if(row == SelectedRow && col == SelectedCol)
@@ -88,11 +89,11 @@ namespace XIANG_QI_TRANSFER.Displayers
             int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
             int btnCol = (int)((Button)sender).GetValue(XQColProperty);
 
-            /*
+            
             MessageBox.Show("Button is: " +
                 ((Button)sender).Name +
                 "\n - Row       = " + btnRow +
-                "\n - Column = " + btnCol );*/
+                "\n - Column = " + btnCol );
 
             HandleClick(btnRow,btnCol);
         }
@@ -130,15 +131,11 @@ namespace XIANG_QI_TRANSFER.Displayers
                     }
                     else
                         operateTips.Text = "last move State:\nillegal";
-
-
                     createGrid(grid);
-
                     if (gb.judgeIsGameOver())
                         MessageBox.Show(gb.Player + " win");
                     else
                         gb.SwitchPlayer();
-
                     break;
             }
 
