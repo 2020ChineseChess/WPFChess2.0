@@ -24,7 +24,6 @@ namespace XIANG_QI_TRANSFER.Displayers
     {
         GameBoard gb = new GameBoard();
         State GameState;
-        int SelectedRow = -1, SelectedCol = -1;
 
         enum State
         {
@@ -35,14 +34,14 @@ namespace XIANG_QI_TRANSFER.Displayers
         public MainWindow()
         {
             InitializeComponent();
-            createGrid(grid);
         }
 
 
 
  
-        public void createGrid(Grid grid)
+        public void DrawGrid(Grid grid)
         {
+   
             for (int row = 0; row < 11; row++)
             {
                 for (int col = 0; col < 9; col++)
@@ -57,6 +56,11 @@ namespace XIANG_QI_TRANSFER.Displayers
                         if (gb.Board[row, col].Player != Pieces.Piece.Team.black)
                             btn.Foreground = Brushes.Red;
                     }
+                    else
+                    {
+         
+                        //btn.Background = Brushes.Transparent;
+                    }
 
 
                     if (row != 5)
@@ -70,7 +74,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                         btn.Background = Brushes.LightSeaGreen;
                     }
 
-                    if(row == SelectedRow && col == SelectedCol)
+                    if(row == gb.selectedRow && col == gb.selectedCol)
                     {
                         btn.Background = Brushes.LightCyan;
                     }
@@ -88,11 +92,12 @@ namespace XIANG_QI_TRANSFER.Displayers
             int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
             int btnCol = (int)((Button)sender).GetValue(XQColProperty);
 
-            /*
-            MessageBox.Show("Button is: " +
+                /*
+                MessageBox.Show("Button is: " +
                 ((Button)sender).Name +
                 "\n - Row       = " + btnRow +
-                "\n - Column = " + btnCol );*/
+                "\n - Column = " + btnCol );   */
+
 
             HandleClick(btnRow,btnCol);
         }
@@ -108,14 +113,12 @@ namespace XIANG_QI_TRANSFER.Displayers
                     if (gb.SelectPiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
-                        SelectedRow = BtnRow;
-                        SelectedCol = BtnCol;
                         ChangeState(State.SelectMove);
                     }
                     else
                         operateTips.Text = "last move State:\nillegal";
 
-                    createGrid(grid);
+                    DrawGrid(grid);
 
                     break;
 
@@ -124,20 +127,20 @@ namespace XIANG_QI_TRANSFER.Displayers
                     if (gb.MovePiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
-                        SelectedRow = BtnRow;
-                        SelectedCol = BtnCol;
                         ChangeState(State.SelectPiece);
+                        gb.step++;
                     }
                     else
                         operateTips.Text = "last move State:\nillegal";
 
 
-                    createGrid(grid);
-
                     if (gb.judgeIsGameOver())
                         MessageBox.Show(gb.Player + " win");
                     else
                         gb.SwitchPlayer();
+
+                    DrawGrid(grid);
+
 
                     break;
             }
@@ -171,21 +174,58 @@ namespace XIANG_QI_TRANSFER.Displayers
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //start
+            DrawGrid(grid);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //restart
+            operateTips.Text = "last move State:\nlegal";
+            gb.restart();
+            ChangeState(State.SelectPiece);
+            DrawGrid(grid);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //undo
+            gb.selectedRow = -1;
+            gb.selectedCol = -1;
+            operateTips.Text = "last move State:\nlegal";
+
+            switch (GameState)
+            {
+                case State.SelectMove:
+                    GameState = State.SelectPiece;
+                    MessageBox.Show("undo successful, please select piece again");
+                    DrawGrid(grid);
+                    break;
+                case State.SelectPiece:
+
+                    if (gb.step != 0)
+                    {
+                        gb.SwitchPlayer();
+                        gb.undo();
+                        DrawGrid(grid);
+                    }
+                    else
+                    {
+                        MessageBox.Show("undo failure, has not piece been moved");
+                    }
+                    break;
+            }
         }
 
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("123");
+            int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
+            int btnCol = (int)((Button)sender).GetValue(XQColProperty);
+
+            MessageBox.Show("Button is: " +
+            ((Button)sender).Name +
+            "\n - Row       = " + btnRow +
+            "\n - Column = " + btnCol );
         }
 
         public static readonly DependencyProperty XQColProperty =
@@ -194,6 +234,3 @@ namespace XIANG_QI_TRANSFER.Displayers
                 new PropertyMetadata(default(int)));
     }
 }
-
-
-

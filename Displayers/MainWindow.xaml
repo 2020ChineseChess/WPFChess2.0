@@ -1,12 +1,12 @@
-﻿<Window x:Class="XIANG_QI_TRANSFER.Displayers.MainWindow"
+﻿<Window x:Name="window" x:Class="XIANG_QI_TRANSFER.Displayers.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XIANG_QI_TRANSFER.Displayers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="498.615" Width="871.467"
-        ResizeMode="NoResize">
+        Title="WPF ChineseChess V1.0.0" Height="498.615" Width="871.467"
+        ResizeMode="NoResize" Background="White" Icon="enemy1.png">
 
     <Grid x:Name="grid" Margin="10,10,0,0" Height="440" VerticalAlignment="Top" MinWidth="720" MinHeight="440" HorizontalAlignment="Left" Width="720">
         <Grid.RowDefinitions>
@@ -34,14 +34,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="8" HorizontalAlignment="Left" Height="126" Margin="90,0,-125,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="115">
-            <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,27" TextWrapping="Wrap" Width="95"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
+            <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,40" TextWrapping="Wrap" Width="95"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
             <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
         </Grid>
         <Grid Grid.Column="8" HorizontalAlignment="Left" Height="93" Margin="90,15,-125,0" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Top" Width="115">
-            <Button Content="Start" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-            <Button Content="Undo" HorizontalAlignment="Left" Margin="19,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
-            <Button Content="Restart" HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+            <Button Content="Start" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="Undo" HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+            <Button Content="Restart" HorizontalAlignment="Left" Margin="19,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
         </Grid>
-        <Image Grid.Column="8" HorizontalAlignment="Left" Height="100" Margin="97,18,-117,0" Grid.Row="6" Grid.RowSpan="3" VerticalAlignment="Top" Width="100" MouseDown="Image_MouseDown" Source="enemy1.png"/>
+        <Button Content="" Grid.Column="8" HorizontalAlignment="Left" Margin="111,33,-106,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Grid.RowSpan="3" Height="72" Click="Button_Click_4">
+            <Button.Background>
+                <ImageBrush ImageSource="enemy1.png" Stretch="None"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

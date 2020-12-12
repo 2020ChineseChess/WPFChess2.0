@@ -8,11 +8,14 @@ namespace XIANG_QI_TRANSFER.GameBorads
 {
     class GameBoard
     {
-        Team player = Piece.Team.red; //default palyer
+        Team player = Team.red;
         private Piece[,] board;
         public string river = "一一楚河一汉界一一"; //river
         public int currentRow, currentCol;
         public int futureRow, futureCol;
+        public int lastRow, lastCol;
+        public int selectedRow, selectedCol;
+        public int step = 0;
 
 
         public Team Player { get => player; set => player = value; }
@@ -43,6 +46,9 @@ namespace XIANG_QI_TRANSFER.GameBorads
             currentRow = row;
             currentCol = col;
 
+            selectedRow = row;
+            selectedCol = col;
+
             //if piece exist.
             if (board[currentRow, currentCol] != null)
             {
@@ -64,6 +70,10 @@ namespace XIANG_QI_TRANSFER.GameBorads
             futureRow = row;
             futureCol = col;
 
+
+            selectedRow = row;
+            selectedCol = col;
+
             //cancel the illegal move (nothing change
             if ((currentCol == futureCol) && (currentRow == futureRow))
             {
@@ -71,7 +81,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
             }
 
             //is the move follow the chess rules
-            
+
             if (!(board[currentRow, currentCol].ValidMoves(futureRow, futureCol, this)))
             {
                 return false;
@@ -82,18 +92,21 @@ namespace XIANG_QI_TRANSFER.GameBorads
                 if (Board[futureRow, futureCol].Player == Board[currentRow, currentCol].Player)
                     return false;
 
+            //store the old position
+            lastCol = currentCol;
+            lastRow = currentRow;
 
             //new one sign to old one
             board[futureRow, futureCol] = board[currentRow, currentCol];
 
             //change the position of piece
             board[futureRow, futureCol].X = futureRow;
-             board[futureRow, futureCol].Y = futureCol;
+            board[futureRow, futureCol].Y = futureCol;
 
-             //delete old one
-             board[currentRow, currentCol] = null;
+            //delete old one
+            board[currentRow, currentCol] = null;
 
-            //sign the last step;
+            //sign the step;
             currentRow = futureRow;
             currentCol = futureCol;
 
@@ -129,6 +142,13 @@ namespace XIANG_QI_TRANSFER.GameBorads
         void chessboardBuilding()
         {
             board = new Piece[11, 9];
+
+            player = Team.red;
+            currentRow = -1; currentCol= -1;
+            futureRow = -1; futureCol = -1;
+            lastRow = -1; lastCol = -1;
+            selectedRow = -1; selectedCol = -1;
+            step = 0;
 
             //building the BlackChess
             Board[0, 0] = new PieceCar(Team.black, 0, 0); //车
@@ -171,6 +191,32 @@ namespace XIANG_QI_TRANSFER.GameBorads
             Board[7, 6] = new PieceSoldier(Team.red, 7, 6);
             Board[7, 8] = new PieceSoldier(Team.red, 7, 8);
 
+        }
+
+        internal void restart()
+        {
+            chessboardBuilding();
+        }
+
+
+        internal void undo()
+        {
+
+            //current one sign to old one
+            board[lastRow, lastCol] = board[currentRow, currentCol];
+
+            //change the position of piece
+            board[lastRow, lastCol].X = lastRow;
+            board[lastRow, lastCol].Y = lastCol;
+
+            //delete current one
+            board[currentRow, currentCol] = null;
+
+            //sign the last step;
+            currentRow = lastRow;
+            currentCol = lastCol;
+
+            step = 0;
         }
     }
 }
