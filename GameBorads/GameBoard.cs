@@ -121,6 +121,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
             if (count != 2)
                 return true;
 
+
             return false;
         }
 
