@@ -18,6 +18,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
         public int step = 0;
         public bool isKilled;
         public Piece diedPiece;
+        public int tempRow, tempCol;
 
 
         public Team Player { get => player; set => player = value; }
@@ -45,15 +46,19 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
         public bool SelectPiece(int row, int col)
         {
-            currentRow = row;
-            currentCol = col;
-
             //if piece exist.
-            if (board[currentRow, currentCol] != null)
+            if (board[row, col] != null)
             {
                 //if the piece belong to player;
-                if (board[currentRow, currentCol].Player == this.player)
+                if (board[row, col].Player == this.player)
+                {
+
+                    tempRow = row;
+                    tempCol = col;
                     return true;
+                }
+
+
                 return false;
             }
             else
@@ -69,7 +74,11 @@ namespace XIANG_QI_TRANSFER.GameBorads
             futureRow = row;
             futureCol = col;
 
+            currentRow = tempRow;
+            currentCol = tempCol;
+
             isKilled = false;
+            diedPiece = null;
 
             //cancel the illegal move (nothing change
             if ((currentCol == futureCol) && (currentRow == futureRow))
@@ -113,10 +122,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
             currentRow = futureRow;
             currentCol = futureCol;
 
-
             selectedRow = -1;
             selectedCol = -1;
-
 
             return true;
 
