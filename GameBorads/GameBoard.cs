@@ -67,9 +67,6 @@ namespace XIANG_QI_TRANSFER.GameBorads
             futureRow = row;
             futureCol = col;
 
-            selectedRow = -1;
-            selectedCol = -1;
-
             //cancel the illegal move (nothing change
             if ((currentCol == futureCol) && (currentRow == futureRow))
             {
@@ -105,6 +102,9 @@ namespace XIANG_QI_TRANSFER.GameBorads
             //sign the step;
             currentRow = futureRow;
             currentCol = futureCol;
+
+            selectedRow = -1;
+            selectedCol = -1;
 
             return true;
 

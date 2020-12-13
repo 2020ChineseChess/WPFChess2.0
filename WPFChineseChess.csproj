@@ -139,5 +139,8 @@
   <ItemGroup>
     <Resource Include="Displayers\Resource\null.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Displayers\Resource\backgroundMusic.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
