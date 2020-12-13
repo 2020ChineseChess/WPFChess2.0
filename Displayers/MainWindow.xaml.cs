@@ -38,7 +38,7 @@ namespace XIANG_QI_TRANSFER.Displayers
         }
 
 
- 
+
         public void DrawGrid(Grid boardGrid)
         {
             /*
@@ -62,34 +62,28 @@ namespace XIANG_QI_TRANSFER.Displayers
             {
                 for (int col = 0; col < 9; col++)
                 {
-                    /*
+
                     Image img = new Image();
                     img.Height = 40;
-                    img.Width = 80;*/
+                    img.Width = 80;
 
-                    
+                    /*
                     Button btn = new Button();
                     btn.Height = 40;
                     btn.Width = 80;
+                    */
 
-                    /*
                     if (gb.Board[row, col] != null)
                     {
-                        if (gb.Board[row, col].Player != Pieces.Piece.Team.black)
-                        {
-                            img.Source = new BitmapImage(new Uri(
-                                "C:\\Users\\CHUB\\Desktop\\enemy1.png", UriKind.Absolute));
-                        }
-                        else
-                        {
-                            img.Source = new BitmapImage(new Uri(
-                                "C:\\Users\\CHUB\\Desktop\\Resources\\friend1.png", UriKind.Absolute));
-                        }
+                        String path = "Resource\\" + gb.Board[row, col].Path;
 
-                        
-                    }*/
+                        img.Source = new BitmapImage(new Uri(
+                            path, UriKind.Relative));
 
-                    
+
+                    }
+
+                    /*
                     if (gb.Board[row, col] != null)
                     {
                         btn.Content = gb.Board[row, col].Name;
@@ -100,9 +94,10 @@ namespace XIANG_QI_TRANSFER.Displayers
                     {
          
                         btn.Background = Brushes.Transparent;
-                    }
+                    }*/
 
-                    /*
+
+
                     if (row != 5)
                     {
                         img.SetValue(XQRowProperty, row);
@@ -112,20 +107,20 @@ namespace XIANG_QI_TRANSFER.Displayers
                     }
 
 
-                    
+                    /*
                     string name = "img";
                     name += row.ToString() + col.ToString();
 
                     
                     RegisterName(name, img);*/
 
-                    /*
+
                     Grid.SetRow(img, row);
                     Grid.SetColumn(img, col);
-                    GameboardGrid.Children.Add(img);
-                    */
-                    
+                    boardGrid.Children.Add(img);
 
+
+                    /*
                     if (row != 5)
                     {
                         btn.SetValue(XQRowProperty, row);
@@ -144,7 +139,7 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     Grid.SetRow(btn, row);
                     Grid.SetColumn(btn, col);
-                    boardGrid.Children.Add(btn);
+                    boardGrid.Children.Add(btn);*/
                 }
             }
 
@@ -155,14 +150,14 @@ namespace XIANG_QI_TRANSFER.Displayers
             int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
             int btnCol = (int)((Button)sender).GetValue(XQColProperty);
 
-                /*
-                MessageBox.Show("Button is: " +
-                ((Button)sender).Name +
-                "\n - Row       = " + btnRow +
-                "\n - Column = " + btnCol );   */
+            /*
+            MessageBox.Show("Button is: " +
+            ((Button)sender).Name +
+            "\n - Row       = " + btnRow +
+            "\n - Column = " + btnCol );   */
 
 
-            HandleClick(btnRow,btnCol);
+            HandleClick(btnRow, btnCol);
         }
 
         public void HandleClick(int BtnRow, int BtnCol)
@@ -211,7 +206,7 @@ namespace XIANG_QI_TRANSFER.Displayers
 
         }
 
-        
+
         private void ChangeState(State newState)
         {
             GameState = newState;
@@ -229,7 +224,7 @@ namespace XIANG_QI_TRANSFER.Displayers
             }
 
         }
-        
+
 
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -286,7 +281,7 @@ namespace XIANG_QI_TRANSFER.Displayers
             MessageBox.Show("Button is: " +
             ((Button)sender).Name +
             "\n - Row       = " + btnRow +
-            "\n - Column = " + btnCol );
+            "\n - Column = " + btnCol);
         }
 
         public static readonly DependencyProperty XQColProperty =
@@ -299,7 +294,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                 typeof(int), typeof(Button),
                 new PropertyMetadata(default(int)));
 
-        /*
+
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -310,7 +305,7 @@ namespace XIANG_QI_TRANSFER.Displayers
             MessageBox.Show("Image is: " +
                 ((Image)sender).Name +
                 "\n - Row       = " + imgRow +
-                "\n - Column = " + imgCol );
+                "\n - Column = " + imgCol);
 
             Image img = FindName("img" + imgRow.ToString() + imgCol.ToString()) as Image;
             if (img != null)
@@ -321,6 +316,6 @@ namespace XIANG_QI_TRANSFER.Displayers
             boardGrid.Children.Remove(img);
 
             HandleClick(imgRow, imgCol);
-        }*/
+        }
     }
 }

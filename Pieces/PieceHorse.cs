@@ -10,6 +10,9 @@ namespace XIANG_QI_TRANSFER.Pieces
         public PieceHorse(Team player, int x, int y) : base(player, x, y)
         {
             this.Name = '馬';
+
+
+            Path = Player + "Horse.png";
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gb)

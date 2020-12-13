@@ -17,6 +17,9 @@ namespace XIANG_QI_TRANSFER.Pieces
             {
                 this.Name = '相';
             }
+
+
+            Path = Player + "Elephant.png";
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gb)

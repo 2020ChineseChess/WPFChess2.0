@@ -31,7 +31,6 @@
                 <ImageBrush ImageSource="enemy1.png" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Image Grid.Column="8" HorizontalAlignment="Left" Height="44" Margin="111,5,-93,0" Grid.Row="8" Grid.RowSpan="2" VerticalAlignment="Top" Width="62" MouseDown="Image_MouseDown"/>
         <Grid x:Name="boardGrid" HorizontalAlignment="Left" Height="440" Margin="10,10,0,0" VerticalAlignment="Top" Width="720">
             <Grid.RowDefinitions>
                 <RowDefinition/>

@@ -112,5 +112,24 @@
   <ItemGroup>
     <Resource Include="Displayers\enemy1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\Resource\blackAdvisor.png" />
+    <Resource Include="Displayers\Resource\blackCannon.png" />
+    <Resource Include="Displayers\Resource\blackCar.png" />
+    <Resource Include="Displayers\Resource\blackElephant.png" />
+    <Resource Include="Displayers\Resource\blackGeneral.png" />
+    <Resource Include="Displayers\Resource\blackHorse.png" />
+    <Resource Include="Displayers\Resource\blackSoldier.png" />
+    <Resource Include="Displayers\Resource\redAdvisor.png" />
+    <Resource Include="Displayers\Resource\redCannon.png" />
+    <Resource Include="Displayers\Resource\redCar.png" />
+    <Resource Include="Displayers\Resource\redElephant.png" />
+    <Resource Include="Displayers\Resource\redGeneral.png" />
+    <Resource Include="Displayers\Resource\redHorse.png" />
+    <Resource Include="Displayers\Resource\redSoldier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\Panel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

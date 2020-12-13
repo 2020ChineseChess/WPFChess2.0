@@ -10,6 +10,9 @@ namespace XIANG_QI_TRANSFER.Pieces
         public PieceCar(Team player, int intX, int intY) : base(player, intX, intY)
         {
             this.Name = '車';
+
+
+            Path = Player + "Car.png";
         }
 
         public PieceCar(char name) : base(name)

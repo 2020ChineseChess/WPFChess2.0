@@ -13,6 +13,9 @@ namespace XIANG_QI_TRANSFER.Pieces
                 this.Name = '卒';
             else
                 this.Name = '兵';
+
+
+            Path = Player + "Soldier.png";
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gb)

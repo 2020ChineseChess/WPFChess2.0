@@ -18,6 +18,8 @@ namespace XIANG_QI_TRANSFER.Pieces
             {
                 this.Name = '砲';
             }
+
+            Path = Player + "Cannon.png";
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gb)

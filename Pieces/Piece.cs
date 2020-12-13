@@ -11,6 +11,7 @@ namespace XIANG_QI_TRANSFER.Pieces
         private int y;//the y position of piece
         private Team player;//the player of the chess
         private char name;//the expression of piece
+        private string path;
 
         public enum Team
         {
@@ -22,6 +23,7 @@ namespace XIANG_QI_TRANSFER.Pieces
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public char Name { get => name; set => name = value; }
+        public string Path { get => path; set => path = value; }
 
         public Piece(Team player, int intX, int intY)
         {
