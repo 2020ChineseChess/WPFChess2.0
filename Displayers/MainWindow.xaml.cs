@@ -156,20 +156,21 @@ namespace XIANG_QI_TRANSFER.Displayers
             }
         }
 
+        /*
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
             int btnCol = (int)((Button)sender).GetValue(XQColProperty);
 
-            /*
+            
             MessageBox.Show("Button is: " +
             ((Button)sender).Name +
             "\n - Row       = " + btnRow +
-            "\n - Column = " + btnCol );   */
+            "\n - Column = " + btnCol );   
 
 
             HandleClick(btnRow, btnCol);
-        }
+        }*/
 
         public void HandleClick(int BtnRow, int BtnCol)
         {
@@ -280,6 +281,10 @@ namespace XIANG_QI_TRANSFER.Displayers
                     {
                         gb.SwitchPlayer();
                         gb.undo();
+
+                        tips.Text = "Player: " + gb.Player +
+                       "\n\nState:\n" + GameState;
+
                         DrawGrid(boardGrid);
                     }
                     else
@@ -295,12 +300,12 @@ namespace XIANG_QI_TRANSFER.Displayers
 
         public static readonly DependencyProperty XQColProperty =
             DependencyProperty.Register("XQCol",
-                typeof(int), typeof(Button),
+                typeof(int), typeof(Image),
                 new PropertyMetadata(default(int)));
 
         public static readonly DependencyProperty XQRowProperty =
              DependencyProperty.Register("XQRow",
-                typeof(int), typeof(Button),
+                typeof(int), typeof(Image),
                 new PropertyMetadata(default(int)));
 
 
