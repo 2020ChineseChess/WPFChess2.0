@@ -34,7 +34,6 @@ namespace XIANG_QI_TRANSFER.Displayers
         public MainWindow()
         {
             InitializeComponent();
-            DrawGrid(boardGrid);
         }
 
 
@@ -64,8 +63,8 @@ namespace XIANG_QI_TRANSFER.Displayers
                 {
 
                     Image img = new Image();
-                    img.Height = 40;
-                    img.Width = 80;
+                    img.Height = 50;
+                    img.Width = 50;
 
                     /*
                     Button btn = new Button();
@@ -79,9 +78,10 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                         img.Source = new BitmapImage(new Uri(
                             path, UriKind.Relative));
-
-
                     }
+                    else
+                        img.Source = new BitmapImage(new Uri(
+                               "Resource\\null.png", UriKind.Relative));
 
                     /*
                     if (gb.Board[row, col] != null)
@@ -142,7 +142,18 @@ namespace XIANG_QI_TRANSFER.Displayers
                     boardGrid.Children.Add(btn);*/
                 }
             }
+            if (!(gb.selectedRow == -1 && gb.selectedCol == -1))
+            {
+                String path = "Resource\\" + gb.Board[gb.selectedRow, gb.selectedCol].Path;
 
+                SelecetedPiece.Source = new BitmapImage(new Uri(
+                               path, UriKind.Relative));
+            }
+            else
+            {
+                SelecetedPiece.Source = new BitmapImage(new Uri(
+                               "Resource\\null.png", UriKind.Relative));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -273,16 +284,6 @@ namespace XIANG_QI_TRANSFER.Displayers
         }
 
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            int btnRow = (int)((Button)sender).GetValue(XQRowProperty);
-            int btnCol = (int)((Button)sender).GetValue(XQColProperty);
-
-            MessageBox.Show("Button is: " +
-            ((Button)sender).Name +
-            "\n - Row       = " + btnRow +
-            "\n - Column = " + btnCol);
-        }
 
         public static readonly DependencyProperty XQColProperty =
             DependencyProperty.Register("XQCol",
@@ -302,18 +303,11 @@ namespace XIANG_QI_TRANSFER.Displayers
             int imgRow = (int)((Image)sender).GetValue(XQRowProperty);
             int imgCol = (int)((Image)sender).GetValue(XQColProperty);
 
+            /*
             MessageBox.Show("Image is: " +
                 ((Image)sender).Name +
                 "\n - Row       = " + imgRow +
-                "\n - Column = " + imgCol);
-
-            Image img = FindName("img" + imgRow.ToString() + imgCol.ToString()) as Image;
-            if (img != null)
-            {
-                MessageBox.Show("OK");
-            }
-
-            boardGrid.Children.Remove(img);
+                "\n - Column = " + imgCol);*/
 
             HandleClick(imgRow, imgCol);
         }

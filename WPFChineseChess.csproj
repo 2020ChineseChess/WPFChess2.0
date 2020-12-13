@@ -113,7 +113,6 @@
     <Resource Include="Displayers\enemy1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Displayers\Resource\blackAdvisor.png" />
     <Resource Include="Displayers\Resource\blackCannon.png" />
     <Resource Include="Displayers\Resource\blackCar.png" />
     <Resource Include="Displayers\Resource\blackElephant.png" />
@@ -130,6 +129,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Displayers\Panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\windowsboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\Resource\blackAdvisor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Displayers\Resource\null.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
