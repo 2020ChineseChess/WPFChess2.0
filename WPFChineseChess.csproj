@@ -128,9 +128,6 @@
     <Resource Include="Displayers\Resource\redSoldier.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Displayers\Panel.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Displayers\windowsboard.png" />
   </ItemGroup>
   <ItemGroup>

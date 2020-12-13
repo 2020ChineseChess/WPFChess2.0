@@ -178,6 +178,12 @@ namespace XIANG_QI_TRANSFER.Displayers
             {
                 case State.SelectPiece:
 
+                    if (gb.judgeIsGameOver())
+                    {
+                        MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
+                            "Please restart a new game");
+                        break;
+                    }
 
                     if (gb.SelectPiece(BtnRow, BtnCol))
                     {
@@ -198,20 +204,20 @@ namespace XIANG_QI_TRANSFER.Displayers
                     if (gb.MovePiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
+
+                        if (gb.judgeIsGameOver())
+                            MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
+                                "Please restart a new game");
+                        else
+                            gb.SwitchPlayer();
+
                         ChangeState(State.SelectPiece);
                         gb.step++;
                     }
                     else
                         operateTips.Text = "last move State:\nillegal";
 
-
-                    if (gb.judgeIsGameOver())
-                        MessageBox.Show(gb.Player + " win");
-                    else
-                        gb.SwitchPlayer();
-
                     DrawGrid(boardGrid);
-
                     break;
             }
 
@@ -267,6 +273,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     MessageBox.Show("undo successful, please select piece again");
                     DrawGrid(boardGrid);
                     break;
+
                 case State.SelectPiece:
 
                     if (gb.step != 0)
@@ -279,6 +286,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     {
                         MessageBox.Show("undo failure, has not piece been moved");
                     }
+
                     break;
             }
         }
