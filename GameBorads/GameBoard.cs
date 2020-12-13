@@ -16,6 +16,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
         public int lastRow, lastCol;
         public int selectedRow, selectedCol;
         public int step = 0;
+        public bool isKilled;
+        public Piece diedPiece;
 
 
         public Team Player { get => player; set => player = value; }
@@ -67,6 +69,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
             futureRow = row;
             futureCol = col;
 
+            isKilled = false;
+
             //cancel the illegal move (nothing change
             if ((currentCol == futureCol) && (currentRow == futureRow))
             {
@@ -74,7 +78,6 @@ namespace XIANG_QI_TRANSFER.GameBorads
             }
 
             //is the move follow the chess rules
-
             if (!(board[currentRow, currentCol].ValidMoves(futureRow, futureCol, this)))
             {
                 return false;
@@ -83,7 +86,14 @@ namespace XIANG_QI_TRANSFER.GameBorads
             //could not eating owner piece
             if (Board[futureRow, futureCol] != null)
                 if (Board[futureRow, futureCol].Player == Board[currentRow, currentCol].Player)
+                {
                     return false;
+                }
+                else
+                {
+                    isKilled = true;
+                    diedPiece = Board[futureRow, futureCol];
+                }
 
             //store the old position
             lastCol = currentCol;
@@ -103,8 +113,10 @@ namespace XIANG_QI_TRANSFER.GameBorads
             currentRow = futureRow;
             currentCol = futureCol;
 
+
             selectedRow = -1;
             selectedCol = -1;
+
 
             return true;
 
@@ -205,8 +217,12 @@ namespace XIANG_QI_TRANSFER.GameBorads
             board[lastRow, lastCol].X = lastRow;
             board[lastRow, lastCol].Y = lastCol;
 
-            //delete current one
-            board[currentRow, currentCol] = null;
+            //if someone has been killed, recover;
+            //if not, current -> null;
+            if (isKilled)
+                board[currentRow, currentCol] = diedPiece;
+            else
+                board[currentRow, currentCol] = null;
 
             //sign the last step;
             currentRow = lastRow;
