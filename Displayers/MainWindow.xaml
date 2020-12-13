@@ -8,44 +8,55 @@
         Title="WPF ChineseChess V1.0.0" Height="498.615" Width="871.467"
         ResizeMode="NoResize" Background="White" Icon="enemy1.png">
 
-    <Grid x:Name="grid" Margin="10,10,0,0" Height="440" VerticalAlignment="Top" MinWidth="720" MinHeight="440" HorizontalAlignment="Left" Width="720">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="8" HorizontalAlignment="Left" Height="126" Margin="90,0,-125,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="115">
+    <Grid x:Name="MotherGrid">
+        <Grid x:Name="tipsGrid" HorizontalAlignment="Left" Height="126" Margin="740,10,0,0" VerticalAlignment="Top" Width="115">
             <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,40" TextWrapping="Wrap" Width="95"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
             <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
         </Grid>
-        <Grid Grid.Column="8" HorizontalAlignment="Left" Height="93" Margin="90,15,-125,0" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Top" Width="115">
-            <Button Content="Start" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
-            <Button Content="Undo" HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
-            <Button Content="Restart" HorizontalAlignment="Left" Margin="19,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <Grid x:Name="functionGrid" HorizontalAlignment="Left" Height="93" Margin="740,136,0,0" VerticalAlignment="Top" Width="115">
+            <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
+            <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+            <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="19,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
         </Grid>
-        <Button Content="" Grid.Column="8" HorizontalAlignment="Left" Margin="111,33,-106,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Grid.RowSpan="3" Height="72" Click="Button_Click_4">
+        <Button x:Name="testBtn" Content="" HorizontalAlignment="Left" Margin="760,238,0,0" VerticalAlignment="Top" Width="75" Height="72" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.588"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
             <Button.Background>
                 <ImageBrush ImageSource="enemy1.png" Stretch="None"/>
             </Button.Background>
         </Button>
+        <Image Grid.Column="8" HorizontalAlignment="Left" Height="44" Margin="111,5,-93,0" Grid.Row="8" Grid.RowSpan="2" VerticalAlignment="Top" Width="62" MouseDown="Image_MouseDown"/>
+        <Grid x:Name="boardGrid" HorizontalAlignment="Left" Height="440" Margin="10,10,0,0" VerticalAlignment="Top" Width="720">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </Window>

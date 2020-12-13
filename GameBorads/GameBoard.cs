@@ -46,9 +46,6 @@ namespace XIANG_QI_TRANSFER.GameBorads
             currentRow = row;
             currentCol = col;
 
-            selectedRow = row;
-            selectedCol = col;
-
             //if piece exist.
             if (board[currentRow, currentCol] != null)
             {

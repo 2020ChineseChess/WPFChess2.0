@@ -34,22 +34,62 @@ namespace XIANG_QI_TRANSFER.Displayers
         public MainWindow()
         {
             InitializeComponent();
+            DrawGrid(boardGrid);
         }
 
 
-
  
-        public void DrawGrid(Grid grid)
+        public void DrawGrid(Grid boardGrid)
         {
-   
+            /*
+            Grid GameboardGrid = new Grid();
+            this.Content = GameboardGrid;
+
+            GameboardGrid.Margin = new Thickness(10, 10, 0, 0);
+            GameboardGrid.Height = 440;
+            GameboardGrid.Width = 720;
+
+            for (int i = 0; i < 11; i++)
+                GameboardGrid.RowDefinitions.Add(new RowDefinition());
+            for (int i = 0; i < 9; i++)
+                GameboardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            */
+
+
+            boardGrid.Children.Clear();
+
             for (int row = 0; row < 11; row++)
             {
                 for (int col = 0; col < 9; col++)
                 {
+                    /*
+                    Image img = new Image();
+                    img.Height = 40;
+                    img.Width = 80;*/
+
+                    
                     Button btn = new Button();
                     btn.Height = 40;
                     btn.Width = 80;
 
+                    /*
+                    if (gb.Board[row, col] != null)
+                    {
+                        if (gb.Board[row, col].Player != Pieces.Piece.Team.black)
+                        {
+                            img.Source = new BitmapImage(new Uri(
+                                "C:\\Users\\CHUB\\Desktop\\enemy1.png", UriKind.Absolute));
+                        }
+                        else
+                        {
+                            img.Source = new BitmapImage(new Uri(
+                                "C:\\Users\\CHUB\\Desktop\\Resources\\friend1.png", UriKind.Absolute));
+                        }
+
+                        
+                    }*/
+
+                    
                     if (gb.Board[row, col] != null)
                     {
                         btn.Content = gb.Board[row, col].Name;
@@ -59,9 +99,32 @@ namespace XIANG_QI_TRANSFER.Displayers
                     else
                     {
          
-                        //btn.Background = Brushes.Transparent;
+                        btn.Background = Brushes.Transparent;
                     }
 
+                    /*
+                    if (row != 5)
+                    {
+                        img.SetValue(XQRowProperty, row);
+                        img.SetValue(XQColProperty, col);
+
+                        img.MouseDown += new MouseButtonEventHandler(this.Image_MouseDown);
+                    }
+
+
+                    
+                    string name = "img";
+                    name += row.ToString() + col.ToString();
+
+                    
+                    RegisterName(name, img);*/
+
+                    /*
+                    Grid.SetRow(img, row);
+                    Grid.SetColumn(img, col);
+                    GameboardGrid.Children.Add(img);
+                    */
+                    
 
                     if (row != 5)
                     {
@@ -81,7 +144,7 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     Grid.SetRow(btn, row);
                     Grid.SetColumn(btn, col);
-                    grid.Children.Add(btn);
+                    boardGrid.Children.Add(btn);
                 }
             }
 
@@ -113,12 +176,14 @@ namespace XIANG_QI_TRANSFER.Displayers
                     if (gb.SelectPiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
+                        gb.selectedRow = BtnRow;
+                        gb.selectedCol = BtnCol;
                         ChangeState(State.SelectMove);
                     }
                     else
                         operateTips.Text = "last move State:\nillegal";
 
-                    DrawGrid(grid);
+                    DrawGrid(boardGrid);
 
                     break;
 
@@ -139,8 +204,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     else
                         gb.SwitchPlayer();
 
-                    DrawGrid(grid);
-
+                    DrawGrid(boardGrid);
 
                     break;
             }
@@ -166,15 +230,12 @@ namespace XIANG_QI_TRANSFER.Displayers
 
         }
         
-        public static readonly DependencyProperty XQRowProperty =
-            DependencyProperty.Register("XQRow",
-                typeof(int), typeof(Button),
-                new PropertyMetadata(default(int)));
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //start
-            DrawGrid(grid);
+            DrawGrid(boardGrid);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -183,7 +244,7 @@ namespace XIANG_QI_TRANSFER.Displayers
             operateTips.Text = "last move State:\nlegal";
             gb.restart();
             ChangeState(State.SelectPiece);
-            DrawGrid(grid);
+            DrawGrid(boardGrid);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -198,7 +259,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                 case State.SelectMove:
                     GameState = State.SelectPiece;
                     MessageBox.Show("undo successful, please select piece again");
-                    DrawGrid(grid);
+                    DrawGrid(boardGrid);
                     break;
                 case State.SelectPiece:
 
@@ -206,7 +267,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     {
                         gb.SwitchPlayer();
                         gb.undo();
-                        DrawGrid(grid);
+                        DrawGrid(boardGrid);
                     }
                     else
                     {
@@ -232,5 +293,34 @@ namespace XIANG_QI_TRANSFER.Displayers
             DependencyProperty.Register("XQCol",
                 typeof(int), typeof(Button),
                 new PropertyMetadata(default(int)));
+
+        public static readonly DependencyProperty XQRowProperty =
+             DependencyProperty.Register("XQRow",
+                typeof(int), typeof(Button),
+                new PropertyMetadata(default(int)));
+
+        /*
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+            int imgRow = (int)((Image)sender).GetValue(XQRowProperty);
+            int imgCol = (int)((Image)sender).GetValue(XQColProperty);
+
+            MessageBox.Show("Image is: " +
+                ((Image)sender).Name +
+                "\n - Row       = " + imgRow +
+                "\n - Column = " + imgCol );
+
+            Image img = FindName("img" + imgRow.ToString() + imgCol.ToString()) as Image;
+            if (img != null)
+            {
+                MessageBox.Show("OK");
+            }
+
+            boardGrid.Children.Remove(img);
+
+            HandleClick(imgRow, imgCol);
+        }*/
     }
 }
