@@ -19,6 +19,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
         public bool isKilled;
         public Piece diedPiece;
         public int tempRow, tempCol;
+        public bool[,] validMoves = new bool[11, 9];
 
 
         public Team Player { get => player; set => player = value; }

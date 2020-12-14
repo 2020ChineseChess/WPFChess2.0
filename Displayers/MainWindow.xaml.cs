@@ -79,9 +79,16 @@ namespace XIANG_QI_TRANSFER.Displayers
                         img.Source = new BitmapImage(new Uri(
                             path, UriKind.Relative));
                     }
-                    else
+                    else if(gb.validMoves[row, col])
+                    {
+                        img.Source = new BitmapImage(new Uri(
+                            "Resource\\validMove.png", UriKind.Relative));
+                    }
+                    else if(gb.Board[row, col] == null)
+                    {
                         img.Source = new BitmapImage(new Uri(
                                "Resource\\null.png", UriKind.Relative));
+                    }
 
                     /*
                     if (gb.Board[row, col] != null)
@@ -181,8 +188,8 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     if (gb.judgeIsGameOver())
                     {
-                        MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
-                            "Please restart a new game");
+                        MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
+                            "Please start a new game");
                         break;
                     }
 
@@ -191,6 +198,12 @@ namespace XIANG_QI_TRANSFER.Displayers
                         operateTips.Text = "last move State:\nlegal";
                         gb.selectedRow = BtnRow;
                         gb.selectedCol = BtnCol;
+
+                        for (int row = 0; row < 11; row++)
+                            for (int col = 0; col < 9; col++)
+                                if (gb.Board[BtnRow, BtnCol].ValidMoves(row, col, gb))
+                                    gb.validMoves[row, col] = true;
+
                         ChangeState(State.SelectMove);
                     }
                     else
@@ -201,14 +214,15 @@ namespace XIANG_QI_TRANSFER.Displayers
                     break;
 
                 case State.SelectMove:
+                    
 
                     if (gb.MovePiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
 
                         if (gb.judgeIsGameOver())
-                            MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
-                                "Please restart a new game");
+                            MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
+                                "Please start a new game");
                         else
                             gb.SwitchPlayer();
 
