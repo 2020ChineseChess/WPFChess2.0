@@ -61,7 +61,6 @@ namespace XIANG_QI_TRANSFER.Displayers
             {
                 for (int col = 0; col < 9; col++)
                 {
-
                     Image img = new Image();
                     img.Height = 50;
                     img.Width = 50;
@@ -74,14 +73,31 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     if (gb.Board[row, col] != null)
                     {
-                        String path = "Resource\\" + gb.Board[row, col].Path;
+                        String path;
+
+                        if (gb.validMoves[row, col])
+                            path = "Resource\\aim\\" + gb.Board[row, col].Path;
+                        else
+                            path = "Resource\\" + gb.Board[row, col].Path;
 
                         img.Source = new BitmapImage(new Uri(
                             path, UriKind.Relative));
+
                     }
                     else
-                        img.Source = new BitmapImage(new Uri(
-                               "Resource\\null.png", UriKind.Relative));
+                    {
+                        if (gb.validMoves[row, col])
+                        {
+                            img.Source = new BitmapImage(new Uri(
+                                "Resource\\box.png", UriKind.Relative));
+                        }
+                        else
+                        {
+                            img.Source = new BitmapImage(new Uri(
+                                "Resource\\null.png", UriKind.Relative));
+
+                        }
+                    }
 
                     /*
                     if (gb.Board[row, col] != null)
@@ -95,6 +111,7 @@ namespace XIANG_QI_TRANSFER.Displayers
          
                         btn.Background = Brushes.Transparent;
                     }*/
+
 
 
 
@@ -142,6 +159,8 @@ namespace XIANG_QI_TRANSFER.Displayers
                     boardGrid.Children.Add(btn);*/
                 }
             }
+
+
             if (!(gb.selectedRow == -1 && gb.selectedCol == -1))
             {
                 String path = "Resource\\" + gb.Board[gb.selectedRow, gb.selectedCol].Path;
@@ -154,6 +173,9 @@ namespace XIANG_QI_TRANSFER.Displayers
                 SelecetedPiece.Source = new BitmapImage(new Uri(
                                "Resource\\null.png", UriKind.Relative));
             }
+
+
+            gb.CleanValidMovePath();
         }
 
         /*
@@ -181,8 +203,8 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     if (gb.judgeIsGameOver())
                     {
-                        MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
-                            "Please restart a new game");
+                        MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
+                            "Please start a new game");
                         break;
                     }
 
@@ -191,6 +213,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                         operateTips.Text = "last move State:\nlegal";
                         gb.selectedRow = BtnRow;
                         gb.selectedCol = BtnCol;
+
                         ChangeState(State.SelectMove);
                     }
                     else
@@ -202,13 +225,14 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                 case State.SelectMove:
 
+
                     if (gb.MovePiece(BtnRow, BtnCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
 
                         if (gb.judgeIsGameOver())
-                            MessageBox.Show("is Gameover, " + gb.Player + " win!\n" +
-                                "Please restart a new game");
+                            MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
+                                "Please start a new game");
                         else
                             gb.SwitchPlayer();
 

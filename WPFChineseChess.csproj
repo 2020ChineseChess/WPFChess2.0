@@ -138,7 +138,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Displayers\backgroundMusic.mp3" />
+    <Resource Include="Displayers\Resource\Background.png" />
+    <Resource Include="Displayers\Resource\aim\blackAdvisor.png" />
+    <Resource Include="Displayers\Resource\aim\blackCannon.png" />
+    <Resource Include="Displayers\Resource\aim\blackCar.png" />
+    <Resource Include="Displayers\Resource\aim\blackElephant.png" />
+    <Resource Include="Displayers\Resource\aim\blackGeneral.png" />
+    <Resource Include="Displayers\Resource\aim\blackHorse.png" />
+    <Resource Include="Displayers\Resource\aim\blackSoldier.png" />
+    <Resource Include="Displayers\Resource\aim\redAdvisor.png" />
+    <Resource Include="Displayers\Resource\aim\redCannon.png" />
+    <Resource Include="Displayers\Resource\aim\redCar.png" />
+    <Resource Include="Displayers\Resource\aim\redElephant.png" />
+    <Resource Include="Displayers\Resource\aim\redGeneral.png" />
+    <Resource Include="Displayers\Resource\aim\redHorse.png" />
+    <Resource Include="Displayers\Resource\aim\redSoldier.png" />
     <Content Include="Displayers\Resource\backgroundMusic.mp3" />
+    <Resource Include="Displayers\Resource\box.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

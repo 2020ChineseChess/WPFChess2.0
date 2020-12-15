@@ -19,6 +19,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
         public bool isKilled;
         public Piece diedPiece;
         public int tempRow, tempCol;
+        public bool[,] validMoves = new bool[11, 9];
 
 
         public Team Player { get => player; set => player = value; }
@@ -55,6 +56,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
                     tempRow = row;
                     tempCol = col;
+
+                    GetValidMovePath();
                     return true;
                 }
 
@@ -129,6 +132,37 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
         }
 
+        public void GetValidMovePath()
+        {
+
+            for (int i = 0; i < 11; i++)
+                for (int j = 0; j < 9; j++)
+                {
+                    //is the move follow the chess rules
+                    if (board[tempRow, tempCol].ValidMoves(i, j, this))
+                    {
+                        if (board[i, j] == null)
+                        {
+                            validMoves[i, j] = true;
+                        }
+                        else
+                        {
+                            if (board[tempRow, tempCol].Player != board[i, j].Player)
+                                validMoves[i, j] = true;
+                        }
+
+                    }
+                }
+        }
+
+        public void CleanValidMovePath()
+        {
+            for (int i = 0; i < 11; i++)
+                for (int j = 0; j < 9; j++)
+                {
+                    validMoves[i, j] = false;
+                }
+        }
 
         public Boolean judgeIsGameOver()
         {
@@ -159,7 +193,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
             board = new Piece[11, 9];
 
             player = Team.red;
-            currentRow = -1; currentCol= -1;
+            currentRow = -1; currentCol = -1;
             futureRow = -1; futureCol = -1;
             lastRow = -1; lastCol = -1;
             selectedRow = -1; selectedCol = -1;
