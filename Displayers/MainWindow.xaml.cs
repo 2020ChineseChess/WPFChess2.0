@@ -79,8 +79,9 @@ namespace XIANG_QI_TRANSFER.Displayers
                         img.Source = new BitmapImage(new Uri(
                             path, UriKind.Relative));
                     }
+             
                     else
-                        img.Source = new BitmapImage(new Uri(
+                    img.Source = new BitmapImage(new Uri(
                                "Resource\\null.png", UriKind.Relative));
 
                     /*
