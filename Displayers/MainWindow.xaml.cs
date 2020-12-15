@@ -210,10 +210,9 @@ namespace XIANG_QI_TRANSFER.Displayers
             //undo
             if (gb.step != 0)
             {
+                ChangeState(State.SelectPiece);
+                
                 gb.undo();
-
-                tips.Text = "Player: " + gb.Player +
-               "\n\nState:\n" + GameState;
 
                 DrawGrid(boardGrid);
             }

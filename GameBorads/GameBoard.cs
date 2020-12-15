@@ -321,6 +321,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
         {
             SwitchPlayer();
             CleanValidMovePath();
+            selectedCol = -1;
+            selectedRow = -1;
             //current one sign to old one
             board[lastRow, lastCol] = board[currentRow, currentCol];
 
