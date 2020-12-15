@@ -149,7 +149,7 @@
     <Resource Include="Displayers\Resource\aim\redGeneral.png" />
     <Resource Include="Displayers\Resource\aim\redHorse.png" />
     <Resource Include="Displayers\Resource\aim\redSoldier.png" />
-    <Resource Include="Displayers\3d24849806cc74faa3957cab8b45d31.png" />
+    <Resource Include="Displayers\icon.png" />
     <Content Include="Displayers\Resource\1.mp3" />
     <Resource Include="Displayers\Resource\box.png" />
   </ItemGroup>

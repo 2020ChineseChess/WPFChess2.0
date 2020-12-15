@@ -209,7 +209,6 @@ namespace XIANG_QI_TRANSFER.Displayers
         {
             operateTips.Text = "last move State:\nlegal";
             gb.restart();
-            ChangeState(State.SelectPiece);
             DrawGrid(boardGrid);
         }
 

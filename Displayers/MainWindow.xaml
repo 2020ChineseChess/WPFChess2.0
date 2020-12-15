@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:XIANG_QI_TRANSFER.Displayers"
         mc:Ignorable="d"
         Title="WPF ChineseChess V1.0.0" Height="570" Width="625"
-        ResizeMode="NoResize" Icon="3d24849806cc74faa3957cab8b45d31.png">
+        ResizeMode="NoResize" Icon="icon.png">
     <Window.Background>
         <ImageBrush ImageSource="windowsboard.png"/>
     </Window.Background>
@@ -23,7 +23,7 @@
         <Grid x:Name="functionGrid" HorizontalAlignment="Left" Height="93" Margin="497,141,0,0" VerticalAlignment="Top" Width="115">
             <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_start" RenderTransformOrigin="0.5,0.5"/>
             <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="16,58,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_undo"/>
-            <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="15,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_start"/>
+            <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="15,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_restart"/>
         </Grid>
         <Grid x:Name="boardGrid" Height="512" VerticalAlignment="Top" Margin="0,0,136,0" HorizontalAlignment="Right" Width="469">
             <Grid.RowDefinitions>
