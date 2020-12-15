@@ -319,7 +319,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
         internal void undo()
         {
-
+            SwitchPlayer();
+            CleanValidMovePath();
             //current one sign to old one
             board[lastRow, lastCol] = board[currentRow, currentCol];
 

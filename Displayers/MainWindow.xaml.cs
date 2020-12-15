@@ -210,7 +210,6 @@ namespace XIANG_QI_TRANSFER.Displayers
             //undo
             if (gb.step != 0)
             {
-                gb.SwitchPlayer();
                 gb.undo();
 
                 tips.Text = "Player: " + gb.Player +
