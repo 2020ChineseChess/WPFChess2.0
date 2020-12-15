@@ -25,6 +25,16 @@ namespace XIANG_QI_TRANSFER.Displayers
         GameBoard gb = new GameBoard();
         State GameState;
 
+        public static readonly DependencyProperty XQColProperty =
+            DependencyProperty.Register("XQCol",
+        typeof(int), typeof(Image),
+        new PropertyMetadata(default(int)));
+
+        public static readonly DependencyProperty XQRowProperty =
+             DependencyProperty.Register("XQRow",
+                typeof(int), typeof(Image),
+                new PropertyMetadata(default(int)));
+
         enum State
         {
             SelectPiece,
@@ -192,13 +202,11 @@ namespace XIANG_QI_TRANSFER.Displayers
 
         private void Button_Click_start(object sender, RoutedEventArgs e)
         {
-            //start
             DrawGrid(boardGrid);
         }
 
         private void Button_Click_restart(object sender, RoutedEventArgs e)
         {
-            //restart
             operateTips.Text = "last move State:\nlegal";
             gb.restart();
             ChangeState(State.SelectPiece);
@@ -207,13 +215,11 @@ namespace XIANG_QI_TRANSFER.Displayers
 
         private void Button_Click_undo(object sender, RoutedEventArgs e)
         {
-            //undo
             if (gb.step != 0)
             {
+                ChangeState(State.SelectPiece);
+                
                 gb.undo();
-
-                tips.Text = "Player: " + gb.Player +
-               "\n\nState:\n" + GameState;
 
                 DrawGrid(boardGrid);
             }
@@ -223,19 +229,6 @@ namespace XIANG_QI_TRANSFER.Displayers
             }
 
         }
-
-
-
-        public static readonly DependencyProperty XQColProperty =
-            DependencyProperty.Register("XQCol",
-                typeof(int), typeof(Image),
-                new PropertyMetadata(default(int)));
-
-        public static readonly DependencyProperty XQRowProperty =
-             DependencyProperty.Register("XQRow",
-                typeof(int), typeof(Image),
-                new PropertyMetadata(default(int)));
-
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
