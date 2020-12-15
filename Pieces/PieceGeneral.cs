@@ -56,7 +56,6 @@ namespace XIANG_QI_TRANSFER.Pieces
                 return false;
             }
 
-
             //move horizontal
             if (CurrentX == x && CurrentY != y)
             {
@@ -64,16 +63,23 @@ namespace XIANG_QI_TRANSFER.Pieces
                 if (y > CurrentY)
                 {
                     if (gb.Board[x, CurrentY + 1] != null)
-                        return false;
+                        if (gb.Board[x, y].Player != gb.Board[X, Y].Player)
+                            return true;
+                        else
+                            return false;
                 }
 
                 else
                 {
                     //go left
                     if (gb.Board[x, CurrentY - 1] != null)
-                        return false;
+                        if (gb.Board[x, y].Player != gb.Board[X, Y].Player)
+                            return true;
+                        else
+                            return false;
                 }
 
+               
                 return true;
 
             }
@@ -86,16 +92,25 @@ namespace XIANG_QI_TRANSFER.Pieces
                 {
                     //go down
                     if (gb.Board[CurrentX + 1, y] != null)
-                        return false;
+                        if (gb.Board[x, y].Player != gb.Board[X, Y].Player)
+                            return true;
+                        else
+                            return false;
                 }
                 else
                 {
                     //go up
                     if (gb.Board[CurrentX - 1, y] != null)
-                        return false;
+                        if (gb.Board[x, y].Player != gb.Board[X, Y].Player)
+                            return true;
+                        else
+                            return false;
                 }
                 return true;
             }
+
+
+
 
             return false;
         }

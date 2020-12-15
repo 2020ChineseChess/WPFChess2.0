@@ -21,9 +21,9 @@
             <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30" Grid.ColumnSpan="2"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
         </Grid>
         <Grid x:Name="functionGrid" HorizontalAlignment="Left" Height="93" Margin="497,141,0,0" VerticalAlignment="Top" Width="115">
-            <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
-            <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="16,58,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_3"/>
-            <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="15,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+            <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_start" RenderTransformOrigin="0.5,0.5"/>
+            <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="16,58,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_undo"/>
+            <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="15,34,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_start"/>
         </Grid>
         <Grid x:Name="boardGrid" Height="512" VerticalAlignment="Top" Margin="0,0,136,0" HorizontalAlignment="Right" Width="469">
             <Grid.RowDefinitions>
