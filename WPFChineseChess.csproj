@@ -110,9 +110,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Displayers\enemy1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Displayers\Resource\blackCannon.png" />
     <Resource Include="Displayers\Resource\blackCar.png" />
     <Resource Include="Displayers\Resource\blackElephant.png" />
@@ -137,7 +134,6 @@
     <Resource Include="Displayers\Resource\null.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Displayers\backgroundMusic.mp3" />
     <Resource Include="Displayers\Resource\Background.png" />
     <Resource Include="Displayers\Resource\aim\blackAdvisor.png" />
     <Resource Include="Displayers\Resource\aim\blackCannon.png" />
@@ -153,7 +149,8 @@
     <Resource Include="Displayers\Resource\aim\redGeneral.png" />
     <Resource Include="Displayers\Resource\aim\redHorse.png" />
     <Resource Include="Displayers\Resource\aim\redSoldier.png" />
-    <Content Include="Displayers\Resource\backgroundMusic.mp3" />
+    <Resource Include="Displayers\3d24849806cc74faa3957cab8b45d31.png" />
+    <Content Include="Displayers\Resource\1.mp3" />
     <Resource Include="Displayers\Resource\box.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

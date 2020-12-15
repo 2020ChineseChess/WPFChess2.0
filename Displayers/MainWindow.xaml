@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:XIANG_QI_TRANSFER.Displayers"
         mc:Ignorable="d"
         Title="WPF ChineseChess V1.0.0" Height="570" Width="625"
-        ResizeMode="NoResize" Icon="enemy1.png">
+        ResizeMode="NoResize" Icon="3d24849806cc74faa3957cab8b45d31.png">
     <Window.Background>
         <ImageBrush ImageSource="windowsboard.png"/>
     </Window.Background>
@@ -56,7 +56,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Selected Piece:" VerticalAlignment="Top" RenderTransformOrigin="0.743,0.379" Height="21" Width="96"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="84" Margin="508,366,0,0" VerticalAlignment="Top" Width="88">
-            <MediaElement x:Name="backgroundMusic" HorizontalAlignment="Left" Height="65" Margin="10,9,0,0" VerticalAlignment="Top" Width="66" IsEnabled="False" Volume="200" Balance="103" Source="backgroundMusic.mp3" />
+            <MediaElement HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Top" Width="68" Source="C:\Users\Administrator\Desktop\Final\XIANG_QI_TRANSFER\Displayers\Resource\1.mp3" Volume="100"/>
         </Grid>
     </Grid>
 </Window>
