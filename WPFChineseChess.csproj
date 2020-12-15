@@ -14,22 +14,6 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Administrator\Desktop\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,18 +33,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>2748062A6A3377C68439074B890ECCA4F28DE674</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>WPFChineseChess_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -123,7 +95,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="WPFChineseChess_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Program\App.config" />
@@ -166,21 +137,24 @@
     <Resource Include="Displayers\Resource\null.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Displayers\backgroundMusic.mp3" />
+    <Resource Include="Displayers\Resource\Background.png" />
+    <Resource Include="Displayers\Resource\aim\blackAdvisor.png" />
+    <Resource Include="Displayers\Resource\aim\blackCannon.png" />
+    <Resource Include="Displayers\Resource\aim\blackCar.png" />
+    <Resource Include="Displayers\Resource\aim\blackElephant.png" />
+    <Resource Include="Displayers\Resource\aim\blackGeneral.png" />
+    <Resource Include="Displayers\Resource\aim\blackHorse.png" />
+    <Resource Include="Displayers\Resource\aim\blackSoldier.png" />
+    <Resource Include="Displayers\Resource\aim\redAdvisor.png" />
+    <Resource Include="Displayers\Resource\aim\redCannon.png" />
+    <Resource Include="Displayers\Resource\aim\redCar.png" />
+    <Resource Include="Displayers\Resource\aim\redElephant.png" />
+    <Resource Include="Displayers\Resource\aim\redGeneral.png" />
+    <Resource Include="Displayers\Resource\aim\redHorse.png" />
+    <Resource Include="Displayers\Resource\aim\redSoldier.png" />
     <Content Include="Displayers\Resource\backgroundMusic.mp3" />
-    <Resource Include="Displayers\Resource\Black.png" />
-    <Resource Include="Displayers\Resource\Red.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 和 x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <Resource Include="Displayers\Resource\box.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
