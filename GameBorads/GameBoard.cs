@@ -88,7 +88,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                 return false;
             }
 
-            //could not eating owner piece
+            //could not eating owner piece, so change the seleted piece.
             if (Board[futureRow, futureCol] != null)
             {
                 if (Board[futureRow, futureCol].Player == Board[tempRow, tempCol].Player)
@@ -102,23 +102,20 @@ namespace XIANG_QI_TRANSFER.GameBorads
                     return false;
                 }
             }
+
+            //is the move follow the chess rules
+            if (!(board[tempRow, tempCol].ValidMoves(futureRow, futureCol, this)))
+            {
+                return false;
+            }
             else
             {
-                //is the move follow the chess rules
-                if (!(board[tempRow, tempCol].ValidMoves(futureRow, futureCol, this)))
-                {
-                    return false;
-                }
-                else
-                {
-                    isKilled = true;
-                    diedPiece = Board[futureRow, futureCol];
-                }
+                isKilled = true;
+                diedPiece = Board[futureRow, futureCol];
             }
 
             currentRow = tempRow;
             currentCol = tempCol;
-
 
             //store the old position for undo   
             lastCol = currentCol;

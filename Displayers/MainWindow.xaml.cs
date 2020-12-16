@@ -44,6 +44,9 @@ namespace XIANG_QI_TRANSFER.Displayers
         public MainWindow()
         {
             InitializeComponent();
+            BGM.Source = new Uri("Resource\\1.mp3", UriKind.Relative);
+            BGM.LoadedBehavior = MediaState.Manual;
+            BGM.Play();
         }
 
 

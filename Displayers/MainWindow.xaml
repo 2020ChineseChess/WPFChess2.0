@@ -56,7 +56,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Selected Piece:" VerticalAlignment="Top" RenderTransformOrigin="0.743,0.379" Height="21" Width="96"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="84" Margin="508,366,0,0" VerticalAlignment="Top" Width="88">
-            <MediaElement HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Top" Width="68" Source="C:\Users\Administrator\Desktop\Final\XIANG_QI_TRANSFER\Displayers\Resource\1.mp3" Volume="100"/>
+            <MediaElement x:Name="BGM" HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Top" Width="68" Volume="100"/>
         </Grid>
     </Grid>
 </Window>
