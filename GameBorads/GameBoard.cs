@@ -78,22 +78,20 @@ namespace XIANG_QI_TRANSFER.GameBorads
             futureRow = row;
             futureCol = col;
 
-            currentRow = tempRow;
-            currentCol = tempCol;
-
             //store the died piece
             isKilled = false;
             diedPiece = null;
 
             //cancel the illegal move (nothing change
-            if ((currentCol == futureCol) && (currentRow == futureRow))
+            if ((tempCol == futureCol) && (tempRow == futureRow))
             {
                 return false;
             }
 
             //could not eating owner piece
             if (Board[futureRow, futureCol] != null)
-                if (Board[futureRow, futureCol].Player == Board[currentRow, currentCol].Player)
+            {
+                if (Board[futureRow, futureCol].Player == Board[tempRow, tempCol].Player)
                 {
                     CleanValidMovePath();
                     tempRow = futureRow;
@@ -103,19 +101,23 @@ namespace XIANG_QI_TRANSFER.GameBorads
                     GetValidMovePath();
                     return false;
                 }
+            }
+            else
+            {
+                //is the move follow the chess rules
+                if (!(board[tempRow, tempCol].ValidMoves(futureRow, futureCol, this)))
+                {
+                    return false;
+                }
                 else
                 {
-                    //is the move follow the chess rules
-                    if (!(board[currentRow, currentCol].ValidMoves(futureRow, futureCol, this)))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        isKilled = true;
-                        diedPiece = Board[futureRow, futureCol];
-                    }
+                    isKilled = true;
+                    diedPiece = Board[futureRow, futureCol];
                 }
+            }
+
+            currentRow = tempRow;
+            currentCol = tempCol;
 
 
             //store the old position for undo   
