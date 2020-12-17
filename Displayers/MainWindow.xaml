@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XIANG_QI_TRANSFER.Displayers"
         mc:Ignorable="d"
-        Title="WPF ChineseChess V1.0.0" Height="570" Width="625"
+        Title="WPF ChineseChess V1.0.1" Height="570" Width="625"
         ResizeMode="NoResize" Icon="icon.png">
     <Window.Background>
         <ImageBrush ImageSource="windowsboard.png"/>
@@ -17,8 +17,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,40" TextWrapping="Wrap" Width="95" Grid.ColumnSpan="2"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
-            <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30" Grid.ColumnSpan="2"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="tips" HorizontalAlignment="Left" Margin="10,10,0,40" TextWrapping="Wrap" Width="95" Grid.ColumnSpan="2" Foreground="White"><Run Text="Player: "/><Run Text="r"/><Run Text="ed"/><LineBreak/><Run/><LineBreak/><Run Text="State: "/><LineBreak/><Run Text="Select"/><Run Text="Piece"/></TextBlock>
+            <TextBlock x:Name="operateTips" HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" Height="30" Grid.ColumnSpan="2" Foreground="White"><Run Text="last "/><Run Text="move"/><Run Text=" "/><Run Text="State:"/><LineBreak/><Run/></TextBlock>
         </Grid>
         <Grid x:Name="functionGrid" HorizontalAlignment="Left" Height="93" Margin="497,141,0,0" VerticalAlignment="Top" Width="115">
             <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_start" RenderTransformOrigin="0.5,0.5"/>
@@ -53,10 +53,8 @@
         </Grid>
         <Grid HorizontalAlignment="Left" Height="127" Margin="498,234,0,0" VerticalAlignment="Top" Width="106">
             <Image x:Name="SelecetedPiece" HorizontalAlignment="Left" Height="89" Margin="10,28,0,0" VerticalAlignment="Top" Width="82"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Selected Piece:" VerticalAlignment="Top" RenderTransformOrigin="0.743,0.379" Height="21" Width="96"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Selected Piece:" VerticalAlignment="Top" RenderTransformOrigin="0.743,0.379" Height="21" Width="96" Foreground="White"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="84" Margin="508,366,0,0" VerticalAlignment="Top" Width="88">
-            <MediaElement x:Name="BGM" HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Top" Width="68" Volume="100"/>
-        </Grid>
+        <Grid HorizontalAlignment="Left" Height="84" Margin="508,366,0,0" VerticalAlignment="Top" Width="88"/>
     </Grid>
 </Window>

@@ -55,7 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Displayers\Displayer.cs" />
     <Compile Include="Displayers\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -150,7 +149,6 @@
     <Resource Include="Displayers\Resource\aim\redHorse.png" />
     <Resource Include="Displayers\Resource\aim\redSoldier.png" />
     <Resource Include="Displayers\icon.png" />
-    <Content Include="Displayers\Resource\1.mp3" />
     <Resource Include="Displayers\Resource\box.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

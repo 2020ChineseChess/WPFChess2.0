@@ -44,29 +44,27 @@ namespace XIANG_QI_TRANSFER.Displayers
         public MainWindow()
         {
             InitializeComponent();
-            BGM.Source = new Uri("Resource\\1.mp3", UriKind.Relative);
-            BGM.LoadedBehavior = MediaState.Manual;
-            BGM.Play();
         }
 
 
 
         public void DrawGrid(Grid boardGrid)
         {
+            //清理掉上一次产生的控件
             boardGrid.Children.Clear();
 
+            //循环以内是棋盘棋子 以外是功能模块（选中的棋子
             for (int row = 0; row < 11; row++)
             {
                 for (int col = 0; col < 9; col++)
                 {
                     Image img = new Image();
-                    img.Height = 50;
-                    img.Width = 50;
 
                     if (gb.Board[row, col] != null)
                     {
+                        //打印棋子
                         String path;
-
+                        
                         if (gb.validMoves[row, col])
                             path = "Resource\\aim\\" + gb.Board[row, col].Path;
                         else
@@ -77,6 +75,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     }
                     else
                     {
+                        //如果这个区域，是某棋子的可移动区域，打印框，否则打印空棋盘。
                         if (gb.validMoves[row, col])
                         {
                             img.Source = new BitmapImage(new Uri(
@@ -91,15 +90,12 @@ namespace XIANG_QI_TRANSFER.Displayers
                     }
 
  
-                    if (row != 5)
-                    {
-                        img.SetValue(XQRowProperty, row);
-                        img.SetValue(XQColProperty, col);
+                    //给控件赋值并添加事件  
+                    img.SetValue(XQRowProperty, row);
+                    img.SetValue(XQColProperty, col);
+                    img.MouseDown += new MouseButtonEventHandler(this.Image_MouseDown);
 
-                        img.MouseDown += new MouseButtonEventHandler(this.Image_MouseDown);
-                    }
-
-
+                    //将新控价添加到指定行列并放到grid中
                     Grid.SetRow(img, row);
                     Grid.SetColumn(img, col);
                     boardGrid.Children.Add(img);
@@ -108,6 +104,7 @@ namespace XIANG_QI_TRANSFER.Displayers
             }
 
 
+            //如果值非法（没有选中任何棋子 不显示 否则显示
             if (!(gb.selectedRow == -1 && gb.selectedCol == -1))
             {
                 String path = "Resource\\" + gb.Board[gb.selectedRow, gb.selectedCol].Path;
@@ -126,8 +123,10 @@ namespace XIANG_QI_TRANSFER.Displayers
         {
             switch (GameState)
             {
+
                 case State.SelectPiece:
 
+                    //判断游戏是否结束
                     if (gb.isGameOver)
                     {
                         MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
@@ -135,6 +134,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                         break;
                     }
 
+                    //成功选中则替换右边显示区域
                     if (gb.SelectPiece(imgRow, imgCol))
                     {
                         operateTips.Text = "last move State:\nlegal";
@@ -153,12 +153,13 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                 case State.SelectMove:
 
-
                     if (gb.MovePiece(imgRow, imgCol))
                     {
+                        //若操作合法，清理上一个棋子的可移动轨迹。
                         gb.CleanValidMovePath();
                         operateTips.Text = "last move State:\nlegal";
 
+                        //如果游戏结束，则宣布游戏结束，否则交换玩家。
                         if (gb.judgeIsGameOver())
                             MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
                                 "Please start a new game");
@@ -236,12 +237,6 @@ namespace XIANG_QI_TRANSFER.Displayers
         {
             int imgRow = (int)((Image)sender).GetValue(XQRowProperty);
             int imgCol = (int)((Image)sender).GetValue(XQColProperty);
-
-            /*
-            MessageBox.Show("Image is: " +
-                ((Image)sender).Name +
-                "\n - Row       = " + imgRow +
-                "\n - Column = " + imgCol);*/
 
             HandleClick(imgRow, imgCol);
         }

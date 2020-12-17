@@ -96,6 +96,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                     CleanValidMovePath();
                     tempRow = futureRow;
                     tempCol = futureCol;
+                    //如果选中的是己方棋子 则换为己方棋子移动
                     selectedCol = futureCol;
                     selectedRow = futureRow;
                     GetValidMovePath();
@@ -134,6 +135,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
             //sign the step;
             currentRow = futureRow;
             currentCol = futureCol;
+
 
             selectedRow = -1;
             selectedCol = -1;
@@ -259,7 +261,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
         void chessboardBuilding()
         {
             board = new Piece[11, 9];
-
+            CleanValidMovePath();
             player = Team.red;
             currentRow = -1; currentCol = -1;
             futureRow = -1; futureCol = -1;
