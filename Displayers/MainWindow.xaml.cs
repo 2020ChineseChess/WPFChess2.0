@@ -134,17 +134,20 @@ namespace XIANG_QI_TRANSFER.Displayers
                         break;
                     }
 
-                    //成功选中则替换右边显示区域
+                    //判断选择是否合法
                     if (gb.SelectPiece(imgRow, imgCol))
                     {
+                        //合法则执行以下操作 提示上一次操作合法
                         operateTips.Text = "last move State:\nlegal";
-
+                        
+                        //下面两行代码的作用是在屏幕右边显示选中棋子
                         gb.selectedRow = imgRow;
                         gb.selectedCol = imgCol;
 
+                        //更改状态
                         ChangeState(State.SelectMove);
                     }
-                    else
+                    else //操作不合法 提示非法
                         operateTips.Text = "last move State:\nillegal";
 
                     DrawGrid(boardGrid);
@@ -173,6 +176,7 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                     DrawGrid(boardGrid);
 
+                    //如果被将则提示危险
                     if (gb.dangerous)
                     {
                         MessageBox.Show("Dangerous!");
@@ -213,6 +217,8 @@ namespace XIANG_QI_TRANSFER.Displayers
         {
             operateTips.Text = "last move State:\nlegal";
             gb.restart();
+            tips.Text = "Player: " + gb.Player +
+                 "\n\nState:\n" + GameState;
             DrawGrid(boardGrid);
         }
 
