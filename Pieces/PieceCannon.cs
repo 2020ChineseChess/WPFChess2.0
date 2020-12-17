@@ -28,7 +28,6 @@ namespace XIANG_QI_TRANSFER.Pieces
             int CurrentY = this.Y;
             int count = -1;
 
-
             //move horizontally
             if (x == CurrentX && y != CurrentY)
             {

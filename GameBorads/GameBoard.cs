@@ -148,16 +148,21 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
         public void isDangerous()
         {
+            //外层的2个for循环 代表搜索棋子
             for(int row = 0; row < 11; row++)
             {
                 for(int col = 0; col< 9; col++)
                 {
+                    //如果搜索到了棋子
                     if(board[row,col] != null)
                     {
+                        //判断是否是黑方
                         if (board[row,col].Player == Team.black)
                         {
+                            //如果是黑方 对红方的九宫格进行搜索
                             for (int i = 8; i <= 10; i++)
                                 for (int j = 3; j <= 5; j++)
+                                    //如果可以移动到帅的位置，则，可以进行吃操作，红方被将。
                                     if (board[row, col].ValidMoves(i, j, this))
                                     {
                                         if (board[i, j] != null && ((board[row, col].Player != board[i, j].Player)))
@@ -167,6 +172,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                         }
                         else
                         {
+                            //如果是红方 对黑方的九宫格进行搜索
                             for (int i = 0; i <= 2; i++)
                                 for (int j = 3; j <= 5; j++)
                                     if (board[row, col].ValidMoves(i, j, this))
@@ -239,19 +245,27 @@ namespace XIANG_QI_TRANSFER.GameBorads
                 return true;
             }
 
+            //如果将帅同列
             if (blackGeneralCol == redGeneralCol)
-            {
+            {   
+                //从将到帅之间进行循环（不包含将帅
                 for (int row = blackGeneralRow + 1; row < redGeneralRow; row++)
                 {
+                    //判断之间是否有棋子
                     if (board[row, blackGeneralCol] != null)
                     {
                         return false;
                     }
                 }
 
+                isGameOver = true;
+
+                //交换玩家 
+                //（下一步将会判断游戏是否结束，
+                //主动造成将帅面对面的一方会输而不是赢
+                //所以交换玩家，把赢家变成另一方。
                 SwitchPlayer();
 
-                isGameOver = true;
                 return true;
             }
 
