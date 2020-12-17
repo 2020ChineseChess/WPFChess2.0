@@ -22,7 +22,7 @@ namespace XIANG_QI_TRANSFER.Displayers
     /// </summary>
     public partial class MainWindow : Window
     {
-        GameBoard gb = new GameBoard();
+        GameBoard gameboard = new GameBoard();
         State GameState;
 
         public static readonly DependencyProperty XQColProperty =
@@ -47,7 +47,6 @@ namespace XIANG_QI_TRANSFER.Displayers
         }
 
 
-
         public void DrawGrid(Grid boardGrid)
         {
             //清理掉上一次产生的控件
@@ -60,15 +59,15 @@ namespace XIANG_QI_TRANSFER.Displayers
                 {
                     Image img = new Image();
 
-                    if (gb.Board[row, col] != null)
+                    if (gameboard.Board[row, col] != null)
                     {
                         //打印棋子
                         String path;
                         
-                        if (gb.validMoves[row, col])
-                            path = "Resource\\aim\\" + gb.Board[row, col].Path;
+                        if (gameboard.validMoves[row, col])
+                            path = "Resource\\aim\\" + gameboard.Board[row, col].Path;
                         else
-                            path = "Resource\\" + gb.Board[row, col].Path;
+                            path = "Resource\\" + gameboard.Board[row, col].Path;
 
                         img.Source = new BitmapImage(new Uri(
                             path, UriKind.Relative));
@@ -76,7 +75,7 @@ namespace XIANG_QI_TRANSFER.Displayers
                     else
                     {
                         //如果这个区域，是某棋子的可移动区域，打印框，否则打印空棋盘。
-                        if (gb.validMoves[row, col])
+                        if (gameboard.validMoves[row, col])
                         {
                             img.Source = new BitmapImage(new Uri(
                                 "Resource\\box.png", UriKind.Relative));
@@ -105,9 +104,9 @@ namespace XIANG_QI_TRANSFER.Displayers
 
 
             //如果值非法（没有选中任何棋子 不显示 否则显示
-            if (!(gb.selectedRow == -1 && gb.selectedCol == -1))
+            if (!(gameboard.selectedRow == -1 && gameboard.selectedCol == -1))
             {
-                String path = "Resource\\" + gb.Board[gb.selectedRow, gb.selectedCol].Path;
+                String path = "Resource\\" + gameboard.Board[gameboard.selectedRow, gameboard.selectedCol].Path;
 
                 SelecetedPiece.Source = new BitmapImage(new Uri(
                                path, UriKind.Relative));
@@ -127,28 +126,28 @@ namespace XIANG_QI_TRANSFER.Displayers
                 case State.SelectPiece:
 
                     //判断游戏是否结束
-                    if (gb.isGameOver)
+                    if (gameboard.isGameOver)
                     {
-                        MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
+                        MessageBox.Show("Gameover, " + gameboard.Player + " player wins!\n" +
                             "Please start a new game");
                         break;
                     }
 
                     //判断选择是否合法
-                    if (gb.SelectPiece(imgRow, imgCol))
+                    if (gameboard.SelectPiece(imgRow, imgCol))
                     {
                         //合法则执行以下操作 提示上一次操作合法
-                        operateTips.Text = "last move State:\nlegal";
+                        operateTips.Text = "Operation State:\nlegal";
                         
                         //下面两行代码的作用是在屏幕右边显示选中棋子
-                        gb.selectedRow = imgRow;
-                        gb.selectedCol = imgCol;
+                        gameboard.selectedRow = imgRow;
+                        gameboard.selectedCol = imgCol;
 
                         //更改状态
                         ChangeState(State.SelectMove);
                     }
                     else //操作不合法 提示非法
-                        operateTips.Text = "last move State:\nillegal";
+                        operateTips.Text = "Operation State:\nillegal";
 
                     DrawGrid(boardGrid);
 
@@ -156,35 +155,41 @@ namespace XIANG_QI_TRANSFER.Displayers
 
                 case State.SelectMove:
 
-                    if (gb.MovePiece(imgRow, imgCol))
+                    if (gameboard.MovePiece(imgRow, imgCol))
                     {
-                        //若操作合法，清理上一个棋子的可移动轨迹。
-                        gb.CleanValidMovePath();
-                        operateTips.Text = "last move State:\nlegal";
+                        //if move 如果移动了
+                        if(gameboard.currentRow == gameboard.futureRow && gameboard.currentCol == gameboard.futureCol)
+                        {
+                            //如果游戏结束，则宣布游戏结束，否则交换玩家。
+                            if (gameboard.CalculateisGameOver())
+                                MessageBox.Show("Gameover, " + gameboard.Player + " player wins!\n" +
+                                    "Please start a new game");
+                            else
+                                gameboard.SwitchPlayer();
 
-                        //如果游戏结束，则宣布游戏结束，否则交换玩家。
-                        if (gb.judgeIsGameOver())
-                            MessageBox.Show("Gameover, " + gb.Player + " player wins!\n" +
-                                "Please start a new game");
-                        else
-                            gb.SwitchPlayer();
 
-                        ChangeState(State.SelectPiece);
+                            //若移动合法，清理可移动轨迹。
+                            gameboard.CleanValidMovePath();
+
+                            ChangeState(State.SelectPiece);
+                        }
+
+                        operateTips.Text = "Operation State:\nlegal";
+
                     }
                     else
-                        operateTips.Text = "last move State:\nillegal";
+                        operateTips.Text = "Operation State:\nillegal";
 
                     DrawGrid(boardGrid);
 
                     //如果被将则提示危险
-                    if (gb.dangerous)
+                    if (gameboard.check)
                     {
-                        MessageBox.Show("Dangerous!");
+                        MessageBox.Show("Check!");
                     }
 
                     break;
             }
-
         }
 
 
@@ -195,11 +200,11 @@ namespace XIANG_QI_TRANSFER.Displayers
             switch (newState)
             {
                 case State.SelectMove:
-                    tips.Text = "Player: " + gb.Player +
+                    tips.Text = "Player: " + gameboard.Player +
                         "\n\nState:\n" + GameState;
                     break;
                 case State.SelectPiece:
-                    tips.Text = "Player: " + gb.Player +
+                    tips.Text = "Player: " + gameboard.Player +
                         "\n\nState:\n" + GameState;
                     break;
             }
@@ -216,19 +221,20 @@ namespace XIANG_QI_TRANSFER.Displayers
         private void Button_Click_restart(object sender, RoutedEventArgs e)
         {
             operateTips.Text = "last move State:\nlegal";
-            gb.restart();
-            tips.Text = "Player: " + gb.Player +
-                 "\n\nState:\n" + GameState;
+            gameboard.restart();
+
+            ChangeState(State.SelectPiece);
+
             DrawGrid(boardGrid);
         }
 
         private void Button_Click_undo(object sender, RoutedEventArgs e)
         {
-            if (gb.step != 0)
+            if (gameboard.step != 0)
             {
                 ChangeState(State.SelectPiece);
                 
-                gb.undo();
+                gameboard.undo();
 
                 DrawGrid(boardGrid);
             }

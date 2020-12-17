@@ -11,17 +11,21 @@ namespace XIANG_QI_TRANSFER.GameBorads
         Team player = Team.red;
         private Piece[,] board;
         public string river = "一一楚河一汉界一一"; //river
-        public int currentRow, currentCol;
-        public int futureRow, futureCol;
-        public int lastRow, lastCol;
-        public int selectedRow, selectedCol;
-        public int step = 0;
-        public bool isKilled;
-        public Piece diedPiece;
-        public int tempRow, tempCol;
-        public bool[,] validMoves = new bool[11, 9];
-        public bool isGameOver = false;
-        public bool dangerous;
+
+        public int currentRow, currentCol; //position
+        public int futureRow, futureCol; //move
+        public int lastRow, lastCol; //undo
+        public int selectedRow, selectedCol; //selected
+        public int tempRow, tempCol; //temp of seleceted
+
+        public int step = 0; //for undo
+        public bool isKilled; //for undo
+        public Piece diedPiece; //for undo
+
+        public bool[,] validMoves = new bool[11, 9]; //for paths
+
+        public bool isGameOver = false; 
+        public bool check = false;
 
         public Team Player { get => player; set => player = value; }
         internal Piece[,] Board { get => board; set => board = value; }
@@ -60,8 +64,6 @@ namespace XIANG_QI_TRANSFER.GameBorads
                     GetValidMovePath();
                     return true;
                 }
-
-
                 return false;
             }
             else
@@ -72,8 +74,8 @@ namespace XIANG_QI_TRANSFER.GameBorads
 
 
         public Boolean MovePiece(int row, int col)
-        {
-            dangerous = false;
+        { 
+            check = false;
 
             futureRow = row;
             futureCol = col;
@@ -96,11 +98,24 @@ namespace XIANG_QI_TRANSFER.GameBorads
                     CleanValidMovePath();
                     tempRow = futureRow;
                     tempCol = futureCol;
+
                     //如果选中的是己方棋子 则换为己方棋子移动
                     selectedCol = futureCol;
                     selectedRow = futureRow;
                     GetValidMovePath();
-                    return false;
+                    return true;
+                }
+                else
+                {
+                    if (!(board[tempRow, tempCol].ValidMoves(futureRow, futureCol, this)))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        isKilled = true;
+                        diedPiece = Board[futureRow, futureCol];
+                    }
                 }
             }
 
@@ -108,11 +123,6 @@ namespace XIANG_QI_TRANSFER.GameBorads
             if (!(board[tempRow, tempCol].ValidMoves(futureRow, futureCol, this)))
             {
                 return false;
-            }
-            else
-            {
-                isKilled = true;
-                diedPiece = Board[futureRow, futureCol];
             }
 
             currentRow = tempRow;
@@ -136,17 +146,16 @@ namespace XIANG_QI_TRANSFER.GameBorads
             currentRow = futureRow;
             currentCol = futureCol;
 
-
             selectedRow = -1;
             selectedCol = -1;
 
-            isDangerous();
+            isCheck();
 
             step++;
             return true;
         }
 
-        public void isDangerous()
+        public void isCheck()
         {
             //外层的2个for循环 代表搜索棋子
             for(int row = 0; row < 11; row++)
@@ -167,7 +176,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                                     {
                                         if (board[i, j] != null && ((board[row, col].Player != board[i, j].Player)))
                                             if (board[i, j].Name == '帥')
-                                                dangerous = true;
+                                                check = true;
                                     }
                         }
                         else
@@ -179,7 +188,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                                     {
                                         if (board[i, j] != null && ((board[row, col].Player != board[i, j].Player)))
                                             if (board[i, j].Name == '將')
-                                                dangerous = true;
+                                                check = true;
                                     }
                         }
                     }
@@ -213,7 +222,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
                 }
         }
 
-        public Boolean judgeIsGameOver()
+        public Boolean CalculateisGameOver()
         {
             int generalCount = 0;
             int redGeneralRow = -1, redGeneralCol = -1;
@@ -283,7 +292,7 @@ namespace XIANG_QI_TRANSFER.GameBorads
             selectedRow = -1; selectedCol = -1;
             step = 0;
             isGameOver = false;
-            dangerous = false;
+            check = false;
 
             //building the BlackChess
             Board[0, 0] = new PieceCar(Team.black, 0, 0); //车
